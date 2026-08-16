@@ -13,7 +13,7 @@ API_HASH = os.getenv("API_HASH", "d7737a28a39c86f3bb82777d0a1aea6e")
 OWNER_ID = int(os.getenv("OWNER_ID", "1443724632"))
 
 # توكن بوت التحكم والإشعارات #
-BOT_TOKEN = "8954408117:AAHpwxwMSxLSlQL_7nHVMHMWAhK4mce6SZM"
+BOT_TOKEN ="8954408117:AAHpwxwMSxLSlQL_7nHVMHMWAHk4mcE6SZM"
 
 # تعريف app:
 app = Client(
