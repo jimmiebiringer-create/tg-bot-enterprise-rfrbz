@@ -15,8 +15,24 @@ OWNER_ID = int(os.getenv("OWNER_ID", "1443724632"))
 # توكن بوت التحكم والإشعارات
 BOT_TOKEN ="8954408117:AAHpwxwMSxLSlQL_7nHVMHMWAHk4mcE6SZM"  
 
-app = Client("my_support_session", api_id=API_ID, api_hash=API_HASH)
-notifier = Client("bot_notification_session", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+from pyrogram import Client, StringSession # تأكد من استيراد StringSession إذا لزم أو تمرير المتغير مباشرة
+
+# التعديل لـ app:
+app = Client(
+    "my_support_session", 
+    api_id=API_ID, 
+    api_hash=API_HASH, 
+    session_string=os.getenv("STRING_SESSION")
+)
+
+# وإذا كان notifier يحتاج أيضاً جلسة نصية منفصلة أو نفس الجلسة:
+notifier = Client(
+    "bot_notification_session", 
+    api_id=API_ID, 
+    api_hash=API_HASH, 
+    session_string=os.getenv("STRING_SESSION")
+)
+
 
 BAGHDAD_TZ = pytz.timezone("Asia/Baghdad")
 
