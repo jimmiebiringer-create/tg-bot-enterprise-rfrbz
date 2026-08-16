@@ -23,12 +23,12 @@ app = Client(
     session_string=os.getenv("STRING_SESSION")
 )
 
-# تعريف notifier:
+# تعريف notifier كبوت رسمي باستخدام التوكن:
 notifier = Client(
     "bot_notification_session",
     api_id=API_ID,
     api_hash=API_HASH,
-    session_string=os.getenv("STRING_SESSION")
+    bot_token=BOT_TOKEN
 )
 
 
