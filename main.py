@@ -10,26 +10,24 @@ from groq import Groq
 # ----------------- الإعدادات والبيانات الأساسية -----------------
 API_ID = int(os.getenv("API_ID", "32492582"))
 API_HASH = os.getenv("API_HASH", "d7737a28a39c86f3bb82777d0a1aea6e")
-OWNER_ID = int(os.getenv("OWNER_ID", "1443724632"))  
+OWNER_ID = int(os.getenv("OWNER_ID", "1443724632"))
 
-# توكن بوت التحكم والإشعارات
-BOT_TOKEN ="8954408117:AAHpwxwMSxLSlQL_7nHVMHMWAHk4mcE6SZM"  
+# توكن بوت التحكم والإشعارات #
+BOT_TOKEN = "8954408117:AAHpwxwMSxLSlQL_7nHVMHMWAhK4mce6SZM"
 
-from pyrogram import Client, StringSession # تأكد من استيراد StringSession إذا لزم أو تمرير المتغير مباشرة
-
-# التعديل لـ app:
+# تعريف app:
 app = Client(
-    "my_support_session", 
-    api_id=API_ID, 
-    api_hash=API_HASH, 
+    "my_support_session",
+    api_id=API_ID,
+    api_hash=API_HASH,
     session_string=os.getenv("STRING_SESSION")
 )
 
-# وإذا كان notifier يحتاج أيضاً جلسة نصية منفصلة أو نفس الجلسة:
+# تعريف notifier:
 notifier = Client(
-    "bot_notification_session", 
-    api_id=API_ID, 
-    api_hash=API_HASH, 
+    "bot_notification_session",
+    api_id=API_ID,
+    api_hash=API_HASH,
     session_string=os.getenv("STRING_SESSION")
 )
 
