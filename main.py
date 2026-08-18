@@ -291,9 +291,8 @@ async def incoming_handler(client, message):
         if not message.from_user:
             return
         user_id = message.from_user.id
-        
-    username = message.from_user.username
-    state = db_get_user_state_by_id(user_id)
+        username = message.from_user.usernam
+        state = db_get_user_state_by_id(user_id)
 
     if username:
         db_set_state(user_id, username=username)
