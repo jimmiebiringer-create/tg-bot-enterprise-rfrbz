@@ -288,6 +288,8 @@ async def ask_groq_master(user_id, user_message, message_obj):
 
 @app.on_message(filters.private & ~filters.me & ~filters.bot & (filters.text | filters.photo | filters.voice | filters.audio))
 async def incoming_handler(client, message):
+        if not message.from_user:
+        return
     user_id = message.from_user.id
     username = message.from_user.username
     state = db_get_user_state_by_id(user_id)
