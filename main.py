@@ -297,8 +297,8 @@ async def incoming_handler(client, message):
         if username:
              db_set_state(user_id, username=username)
 
-    if state["whitelisted"] or state["paused"]:
-        return
+        if state["whitelisted"] or state["paused"]:
+            return
 
     _, active_count, _ = get_keys_stats()
     if active_count == 0:
