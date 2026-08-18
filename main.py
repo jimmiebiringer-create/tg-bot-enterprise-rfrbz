@@ -287,7 +287,7 @@ async def ask_groq_master(user_id, user_message, message_obj):
     return reply
 
 @app.on_message(filters.private & ~filters.me & ~filters.bot & (filters.text | filters.photo | filters.voice | filters.audio))
-    async def incoming_handler(client, message):
+async def incoming_handler(client, message):
         if not message.from_user:
             return
         user_id = message.from_user.id
