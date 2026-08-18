@@ -328,19 +328,19 @@ async def incoming_handler(client, message):
         )
             return
 
-    if state["active_ai"]:
-        user_text = message.text or message.caption or "مرحباً"
-        if message.voice or message.audio:
-            user_text = "[رسالة صوتية من المستخدم]"
-        elif message.photo:
-            user_text = "[أرسل صورة]"
+        if state["active_ai"]:
+            user_text = message.text or message.caption or "مرحباً"
+            if message.voice or message.audio:
+                user_text = "[رسالة صوتية من المستخدم]"
+            elif message.photo:
+                user_text = "[أرسل صورة]"
 
-        ai_reply = await ask_groq_master(user_id, user_text, message)
-        if ai_reply is None:
-            db_set_state(user_id, username=username, paused=True, active_ai=False)
-            await message.reply("الدعم الفني حالياً مغلق سيتم تحويلك الى حربي في وقتاً لاحق")
-            return
-        await message.reply(ai_reply)
+            ai_reply = await ask_groq_master(user_id, user_text, message)
+            if ai_reply is None:
+                db_set_state(user_id, username=username, paused=True, active_ai=False)
+                await message.reply("الدعم الفني حالياً مغلق سيتم تحويلك الى حربي في وقتاً لاحق")
+                return
+                await message.reply(ai_reply)
 
 @app.on_callback_query()
 async def callback_handler(client, callback_query: CallbackQuery):
