@@ -300,19 +300,19 @@ async def incoming_handler(client, message):
         if state["whitelisted"] or state["paused"]:
             return
 
-    _, active_count, _ = get_keys_stats()
-    if active_count == 0:
-        db_set_state(user_id, username=username, paused=True, active_ai=False)
-        try:
-            user_info = message.from_user
-            name = user_info.first_name or "بدون اسم"
-            usr = f"@{user_info.username}" if user_info.username else "لا يوجد"
-            notif_text = f"🚨 **رسالة ومفاتيح فارغة (الدعم مغلق)!**\n\n👤 **الاسم:** {name}\n🔗 **اليوزر:** {usr}\n🆔 **الايدي:** `{user_id}`\n⏰ **الوقت:** {get_baghdad_time()}"
-            await notifier.send_message(OWNER_ID, notif_text)
-        except Exception:
-            pass
-        await message.reply("الدعم الفني حالياً مغلق سيتم تحويلك الى حربي في وقتاً لاحق")
-        return
+        _, active_count, _ = get_keys_stats()
+        if active_count == 0:
+            db_set_state(user_id, username=username, paused=True, active_ai=False)
+            try:
+                user_info = message.from_user
+                name = user_info.first_name or "بدون اسم"
+                usr = f"@{user_info.username}" if user_info.username else "لا يوجد"
+                notif_text = f"🚨 **رسالة ومفاتيح فارغة (الدعم مغلق)!**\n\n👤 **الاسم:** {name}\n🔗 **اليوزر:** {usr}\n🆔 **الايدي:** `{user_id}`\n⏰ **الوقت:** {get_baghdad_time()}"
+                await notifier.send_message(OWNER_ID, notif_text)
+            except Exception:
+                pass
+            await message.reply("الدعم الفني حالياً مغلق سيتم تحويلك الى حربي في وقتاً لاحق")
+              return
 
     if not state["active_ai"] and not state["paused"]:
         db_set_state(user_id, username=username, active_ai=True)
