@@ -294,8 +294,8 @@ async def incoming_handler(client, message):
         username = message.from_user.usernam
         state = db_get_user_state_by_id(user_id)
 
-    if username:
-        db_set_state(user_id, username=username)
+        if username:
+             db_set_state(user_id, username=username)
 
     if state["whitelisted"] or state["paused"]:
         return
