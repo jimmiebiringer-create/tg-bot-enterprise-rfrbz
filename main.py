@@ -314,19 +314,19 @@ async def incoming_handler(client, message):
             await message.reply("الدعم الفني حالياً مغلق سيتم تحويلك الى حربي في وقتاً لاحق")
             return
 
-    if not state["active_ai"] and not state["paused"]:
-        db_set_state(user_id, username=username, active_ai=True)
-        keyboard = InlineKeyboardMarkup([
-            [InlineKeyboardButton("نكمل المحادثة مع بعض 🤝", callback_data=f"ai_cont_{user_id}")],
-            [InlineKeyboardButton("قم بتحويلي إلى حربي (مالك الحساب) 👤", callback_data=f"ai_trans_{user_id}")]
+        if not state["active_ai"] and not state["paused"]:
+            db_set_state(user_id, username=username, active_ai=True)
+            keyboard = InlineKeyboardMarkup([
+                [InlineKeyboardButton("نكمل المحادثة مع بعض 🤝", callback_data=f"ai_cont_{user_id}")],
+                [InlineKeyboardButton("قم بتحويلي إلى حربي (مالك الحساب) 👤", callback_data=f"ai_trans_{user_id}")]
         ])
-        await message.reply(
+            await message.reply(
             "مرحباً! أنا ليلى، ممثلة الدعم الفني لحساب الشخص (حربي). "
             "أنا هنا لمساعدتك والإجابة على استفساراتك. "
             "هل ترغب في أن نكمل المحادثة معاً، أم تفضل تحويل طلبك لـ (حربي) ليدخل إلى الدردشة بنفسه؟",
-            reply_markup=keyboard
+                reply_markup=keyboard
         )
-        return
+            return
 
     if state["active_ai"]:
         user_text = message.text or message.caption or "مرحباً"
