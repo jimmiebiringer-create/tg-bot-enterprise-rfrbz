@@ -312,7 +312,7 @@ async def incoming_handler(client, message):
             except Exception:
                 pass
             await message.reply("الدعم الفني حالياً مغلق سيتم تحويلك الى حربي في وقتاً لاحق")
-              return
+            return
 
     if not state["active_ai"] and not state["paused"]:
         db_set_state(user_id, username=username, active_ai=True)
